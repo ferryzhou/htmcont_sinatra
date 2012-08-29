@@ -1,5 +1,11 @@
+require 'rubygems'
+
 require 'sinatra'
+require 'readability'
+require 'open-uri'
 
 get '/' do
-  "Hello World!"
+  source = open(params[:link]).read
+  Readability::Document.new(source).content
 end
+
